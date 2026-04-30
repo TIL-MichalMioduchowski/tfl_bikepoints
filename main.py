@@ -1,24 +1,21 @@
 import requests
 import json
+import os
 from datetime import datetime
 
-#variable
-url = 'https://api.tfl.gov.uk/BikePoint/BikePoints_888'
-response = requests.get(url)
-data = response.json()
-timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-filename = f'bikepoint_888_{timestamp}.json'
+response = requests.get('https://api.tfl.gov.uk/BikePoint')
 
 if response.status_code == 200:
-    with open(filename, 'w') as file:
-        json.dump(data, file)
-    print(f'File {filename} was succesfully created!')
+    data = response.json()
+    folder = 'bikepoints'
+
+    os.makedirs(folder, exist_ok=True)
+
+    for bp in data:
+        bp_id = bp['id']
+        filename = os.path.join(folder, f'{bp_id}.json')
+        with open(filename, 'w') as file:
+            json.dump(bp, file)
+        print(f'File {filename} was successfully created!')
 else:
-    error_message = data.get('message', 'no message given')
-    print(f'Error creating {filename}: {response.status_code} {error_message}')
-
-#Hint
-#error_message = data.get('message', 'no message given')
-#print(error_message)
-
-
+    print(f'Error:{response.status_code}')
