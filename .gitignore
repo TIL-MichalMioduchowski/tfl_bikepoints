@@ -3,4 +3,4 @@
 data/*
 *.log
 logs/*
-.env
+*.env
