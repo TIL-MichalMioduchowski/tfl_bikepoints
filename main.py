@@ -2,8 +2,13 @@ import requests
 import json
 import os
 from datetime import datetime
+import time
 
-response = requests.get('https://api.tfl.gov.uk/BikePoint')
+timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+
+url = f'https://api.tfl.gov.uk/BikePoint'
+response = requests.get(url)
+
 
 if response.status_code == 200:
     data = response.json()
