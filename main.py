@@ -9,7 +9,6 @@ timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 url = f'https://api.tfl.gov.uk/BikePoint'
 response = requests.get(url)
 
-
 if response.status_code == 200:
     data = response.json()
     folder = 'bikepoints'
