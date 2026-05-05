@@ -1,3 +1,5 @@
 venv/
 *.json
 data/*
+*.log
+logs/*
