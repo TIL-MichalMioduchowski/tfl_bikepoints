@@ -1,5 +1,6 @@
-venv/
+.venv/
 *.json
 data/*
 *.log
 logs/*
+*.env
