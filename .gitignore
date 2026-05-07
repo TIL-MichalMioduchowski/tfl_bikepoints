@@ -1,6 +1,6 @@
 .venv/
-*.json
-data/*
-*.log
-logs/*
-.env*
+__pycache__/
+*.pyc
+data/
+logs/
+.env
